@@ -149,6 +149,8 @@ def extract_number(imgPath, outputPath,mode="PROD"):
 		
 		ret,thresh = cv2.threshold(img_bw,160,255,cv2.THRESH_BINARY)	
 		cropped = cv2.bitwise_not(thresh[y:y+h,x:x+w])
+
+		cv2.imwrite("x" + str(random.choice([1,2,5,4,6,9,89,3,67])) + ".png",cropped)
 		
 		show_image(cropped,"Cropped Digit from Black and White Image",mode)
 		
@@ -198,6 +200,8 @@ def extract_number(imgPath, outputPath,mode="PROD"):
 
 		show_image(final_number,"Resized Squared Image with padding",mode)
 		digits.append(final_number)
+
+		
 
 	return [digits,all_x]
 

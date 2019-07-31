@@ -67,15 +67,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // This function saves the canvas digit image to the phone and then transfers that file to the api server (our ec2 instance)
-    // and retrieves the response back. It uses HttpPostAsyncTask to achieve this as it is required to do any IO operation on a
-    // seperate thread rather than on the main UI thread.
+
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
+
+    // This function saves the canvas digit image to the phone and then transfers that file to the api server (our ec2 instance)
+    // and retrieves the response back. It uses Volley to achieve this as it is required to do any IO operation on a
+    // seperate thread rather than on the main UI thread.
 
     private void send_request(final Bitmap mbitmap) {
 
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }) {
 
             /*
-             * Here we are passing image by renaming it with a unique name
+             * Here we are passing image by renaming it with a unique name and associating it with "test_image" key in our request
              * */
             @Override
             protected Map<String, DataPart> getByteData() {
